@@ -4,13 +4,13 @@ void ft_is_negative(int n)
 {
     if(n >= 0)
         write(1, "P", 1);
-    else if(n < 0)
-        write(1, "N", 1);    
+    else
+        write(1, "N", 1);
 }
 
 int main()
 {
-    int input = 10;
+    int input = -1;
     ft_is_negative(input);
 
     return 0;
