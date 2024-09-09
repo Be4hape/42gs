@@ -19,6 +19,9 @@ void ft_print_comb(void)
 
                 if(i != 789)
                     write(1, ", ", 2);
+                else if(i == 789)
+                        break;
+                    
             }
         }
         i++;
