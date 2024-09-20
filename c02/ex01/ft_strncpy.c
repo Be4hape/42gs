@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-char *ft_strcpy(char *dest, char *src)
+char *ft_strncpy(char *dest, char *src, unsigned int n)
 {
-    int i = 0;
+    unsigned int i = 0;
 
-    while (src[i] != 0)
+    while (i < n)
     {
         dest[i] = src[i];
         i++;
@@ -16,12 +16,11 @@ char *ft_strcpy(char *dest, char *src)
 
 int main()
 {
-    // src의 문자열을 dest에 복사
     char src[] = "hello world";
     char dest[] = "ll";
 
-    char *test = ft_strcpy(dest, src);
-
+    char *test = ft_strncpy(dest, src, 4);
     printf("%s", test);
+
     return 0;
 }
