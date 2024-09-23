@@ -19,7 +19,7 @@ int ft_str_is_alpha(char *str)
 
 int main()
 {
-    char str[] = "as1dads";
+    char str[] = "asdads";
 
     int a = ft_str_is_alpha(str);
     printf("%d", a);
