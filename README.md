@@ -3,7 +3,7 @@ solve the problems.
 
 --- TEST CODE ---<br>
 //ft_substr.c<br>
-int main() {
+    int main() {
     char *result;
 
     // Test case 1: 기본 테스트
