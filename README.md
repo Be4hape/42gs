@@ -3,6 +3,7 @@ solve the problems.
 <pre>
 --- TEST CODE ---
 //ft_substr.c
+    
     int main() {
     char *result;
 
@@ -43,4 +44,47 @@ solve the problems.
     return 0;
 }
 
+//ft_strtrim.c
+    
+    int main() {
+    char *result;
+
+    // Test case 1: 양쪽에서 지정된 문자 제거
+    result = ft_strtrim("xxHello Worldxx", "x");
+    printf("Test 1: %s (Expected: Hello World)\n", result);
+    free(result);
+
+    // Test case 2: 중간에 있는 문자는 남김
+    result = ft_strtrim(" xxhelloxx ", " x");
+    printf("Test 2: %s (Expected: xhello)\n", result);
+    free(result);
+
+    // Test case 3: 여러 문자가 set에 포함된 경우
+    result = ft_strtrim("!!Hello!!", "!");
+    printf("Test 3: %s (Expected: Hello)\n", result);
+    free(result);
+
+    // Test case 4: s1이 빈 문자열일 때
+    result = ft_strtrim("", "x");
+    printf("Test 4: %s (Expected: )\n", result);  // 빈 문자열 예상
+    free(result);
+
+    // Test case 5: set이 빈 문자열일 때 (s1 반환)
+    result = ft_strtrim("Hello", "");
+    printf("Test 5: %s (Expected: Hello)\n", result);
+    free(result);
+
+    // Test case 6: 공백 문자를 set으로 지정
+    result = ft_strtrim("   Hello World   ", " ");
+    printf("Test 6: %s (Expected: Hello World)\n", result);
+    free(result);
+
+    // Test case 7: s1과 set이 둘 다 NULL인 경우
+    result = ft_strtrim(NULL, NULL);
+    printf("Test 7: %s (Expected: (null))\n", result ? result : "(null)");
+
+    return 0;
+}
+
+    
 <pre/>
