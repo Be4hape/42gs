@@ -1,5 +1,5 @@
 # 42gs
-solve the problems.
+당일에 필요한 테스트 코드
 <pre>
 --- TEST CODE ---
 //ft_substr.c
