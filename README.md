@@ -1,8 +1,8 @@
 # 42gs
 solve the problems.
-
---- TEST CODE ---<br>
-//ft_substr.c<br>
+<pre>
+--- TEST CODE ---
+//ft_substr.c
     int main() {
     char *result;
 
@@ -42,3 +42,5 @@ solve the problems.
 
     return 0;
 }
+
+<pre/>
