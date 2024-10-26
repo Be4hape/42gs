@@ -1,7 +1,7 @@
 # 42gs
 solve the problems.
 
---- TEST CODE ---
+--- TEST CODE ---<br>
 //ft_substr.c
 int main() {
     char *result;
