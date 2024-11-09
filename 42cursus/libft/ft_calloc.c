@@ -6,7 +6,7 @@
 /*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 17:09:02 by si-park           #+#    #+#             */
-/*   Updated: 2024/10/12 18:38:22 by si-park          ###   ########.fr       */
+/*   Updated: 2024/11/09 19:06:10 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*arr;
 
+	if (count != 0 && (size > (size_t)-1 / count))
+		return (NULL);
 	arr = malloc(count * size);
 	if (arr == 0)
 		return (NULL);
