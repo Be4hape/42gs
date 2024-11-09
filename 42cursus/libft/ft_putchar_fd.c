@@ -6,7 +6,7 @@
 /*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:43:39 by si-park           #+#    #+#             */
-/*   Updated: 2024/11/09 22:15:01 by si-park          ###   ########.fr       */
+/*   Updated: 2024/11/10 01:00:47 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	if (fd == 1)
-		write(fd, &c, 1);
-	else if (fd == 2)
-		write(fd, &c, 1);
+	write(fd, &c, 1);
 }

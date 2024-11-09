@@ -6,22 +6,12 @@
 /*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 17:19:11 by si-park           #+#    #+#             */
-/*   Updated: 2024/11/09 16:58:51 by si-park          ###   ########.fr       */
+/*   Updated: 2024/11/10 01:04:48 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 static int	is_in_set(char c, char *set)
 {
