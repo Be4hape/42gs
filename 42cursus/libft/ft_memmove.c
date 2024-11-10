@@ -6,13 +6,12 @@
 /*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:29:55 by si-park           #+#    #+#             */
-/*   Updated: 2024/10/05 17:00:05 by si-park          ###   ########.fr       */
+/*   Updated: 2024/11/10 15:32:06 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// static은 이 파일 내에서만 사용 가능한 함수라는 뜻, 이름 충돌 방지를 위해 사용
 static void	fwbw(unsigned char *dst, unsigned char *src, size_t len, int fwbw)
 {
 	size_t			i;

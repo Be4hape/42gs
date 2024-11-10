@@ -6,13 +6,13 @@
 #    By: si-park <si-park@student.42gyeongsan.      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 20:14:48 by si-park           #+#    #+#              #
-#    Updated: 2024/11/06 20:35:50 by si-park          ###   ########.fr        #
+#    Updated: 2024/11/10 14:29:28 by si-park          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
