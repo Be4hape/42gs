@@ -6,9 +6,11 @@
 /*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:38:38 by si-park           #+#    #+#             */
-/*   Updated: 2024/10/12 21:26:07 by si-park          ###   ########.fr       */
+/*   Updated: 2024/11/11 15:59:33 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isalpha(int c)
 {

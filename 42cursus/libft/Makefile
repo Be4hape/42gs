@@ -3,14 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: si-park <si-park@student.42gyeongsan.      +#+  +:+       +#+         #
+#    By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 20:14:48 by si-park           #+#    #+#              #
-#    Updated: 2024/11/10 14:29:28 by si-park          ###   ########.fr        #
+#    Updated: 2024/11/11 16:10:13 by si-park          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Variables
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -26,7 +25,6 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 
 OBJ = $(SRC:.c=.o)
 
-# 기본 규칙
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -35,7 +33,6 @@ $(NAME): $(OBJ)
 %.o: %.c
 		$(CC) $(CFLAGS) -c $< -o $@
 
-# 청소 규칙
 clean:
 		rm -f $(OBJ)
 
