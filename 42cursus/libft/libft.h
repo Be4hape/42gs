@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: si-park <si-park@student.42gyeongsan.      +#+  +:+       +#+        */
+/*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:23:31 by si-park           #+#    #+#             */
-/*   Updated: 2024/10/13 15:45:22 by si-park          ###   ########.fr       */
+/*   Updated: 2024/11/11 15:25:21 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef LIBFT_H
+
 # define LIBFT_H
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <string.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

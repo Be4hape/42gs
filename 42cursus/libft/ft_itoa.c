@@ -6,7 +6,7 @@
 /*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 17:02:39 by si-park           #+#    #+#             */
-/*   Updated: 2024/11/09 20:21:09 by si-park          ###   ########.fr       */
+/*   Updated: 2024/11/11 15:24:06 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_itoa(int n)
 	int		length;
 
 	if (n == -2147483648)
-		return (strdup("-2147483648"));
+		return (ft_strdup("-2147483648"));
 	length = count_length(n);
 	result = (char *)malloc(sizeof(char) * (length + 1));
 	if (!result)
