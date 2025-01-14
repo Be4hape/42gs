@@ -3,146 +3,93 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: si-park <si-park@student.42gyeongsan.      +#+  +:+       +#+        */
+/*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 13:13:29 by si-park           #+#    #+#             */
-/*   Updated: 2025/01/13 13:13:47 by si-park          ###   ########.fr       */
+/*   Created: 2025/01/07 21:02:36 by si-park           #+#    #+#             */
+/*   Updated: 2025/01/14 16:10:00 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-
-//for test, i include stdio
-#include <stdio.h>
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	while (*s++)
-        ft_putchar_fd(*(s-1), fd);
-}
-
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-
-char	*ft_strnstr(const char *big, const char *little, size_t len)
-{
-	size_t	i;
-	size_t	j;
-	size_t	little_len;
-
-	i = 0;
-	j = 0;
-	little_len = ft_strlen(little);
-	if (little_len == 0)
-		return ((char *)big);
-	while (i < len && big[i] != '\0')
-	{
-		j = 0;
-		if (big[i] == little[j])
-		{
-			while (i + j < len && big[i + j] == little[j])
-			{
-				j++;
-				if (j == little_len)
-					return ((char *)&big[i]);
-			}
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-
-
-
+#include "ft_printf.h"
 
 int ft_printf(const char *str, ...)
 {
     va_list args;
     va_start(args, str);
 
-    int i = 0;
-    char *dir;
-    int index;    
-    
-    char *format[] = {"%c", "%s", "%p", "%d", "%i", "%u", "%x", "%X", "%%", NULL};
+    int count_byte = 0;
+    int n;
+    char *numch;
 
-    while (format[i] != NULL){
-        dir = ft_strnstr(str, format[i], ft_strlen(str));
-        printf("%p\n", dir);
-        if(dir) forprint(i);
-        i++;
+    while (*str)
+    {
+        if(*str == '%')
+        {
+            if(*(str+1) == 'c') 
+            {
+                char c = (char)va_arg(args, int);
+                ft_putchar_fd(c, 1);
+                count_byte++;
+            }
+            else if(*(str+1) == 's')
+            {
+                char *nstr = va_arg(args, char *);
+                ft_putstr_fd(nstr, 1);
+                count_byte += ft_strlen(nstr);
+            }
+            else if(*(str + 1) == 'p')
+            {
+                void *pnum = va_arg(args, void *);
+                count_byte += ft_print_p(pnum);
+            }
+            else if(*(str+1) == 'd' || *(str+1) == 'i' || *(str + 1) == 'u')
+            {
+                if(*(str + 1) == 'u')
+                {
+                    n = va_arg(args, int);
+                    if(n < 0 ){
+                        numch = ft_itoa(-n);
+                    }
+                }
+                n = va_arg(args,int);
+                numch = ft_itoa(n);
+                if(numch)
+                {
+                    ft_putstr_fd(numch, 1);
+                    count_byte += ft_strlen(numch);
+                    free(numch);
+                }
+            }
+            else if(*(str+1) == 'x' || *(str + 1) == 'X')
+            {
+                unsigned int n = va_arg(args, unsigned int);
+                if(*(str + 1) == 'x') 
+                    count_byte += ft_putnbr_hex(n, 0);
+                else 
+                    count_byte += ft_putnbr_hex(n, 1); 
+            }
+            else if(*(str+1) == '%')
+            {
+                ft_putstr_fd("%", 1);
+                count_byte += 2;
+            }
+        }
+        else{
+            ft_putchar_fd(*str, 1);
+            count_byte++;
+        }        
+        str++;
     }
+    return count_byte;
 }
 
-
-
-
-void forprint(int i)
+int main(void)
 {
-    if (i == 0) ft_printf_c();
-    if (i == 1) ft_printf_s();
-    if (i == 2) ft_printf_p();
-    if (i == 3) ft_printf_d();
-    if (i == 4) ft_printf_i();
-    if (i == 5) ft_printf_u();
-    if (i == 6) ft_printf_x();
-    if (i == 7) ft_printf_X();
-    if (i == 8) ft_printf_per();
-}
-
-
-char ft_printf_util(args)
-{
-    //가변인자를 받고 
-    
-}
-
-
-
-
-
-
-
-int main(){
-    /*
-    const char *str = "hello %d %c %s";
-    
-    
-    int i = 0;
-    int index;
-    char *dir;
-    
-    char *format[] = {"%c", "%s", "%p", "%d", "%i", "%u", "%x", "%X", "%%", NULL};
-    //printf("%s\n", format[2]);
-
-
-    
-    while (format[i] != NULL){
-        dir = ft_strnstr(str, format[i], ft_strlen(str));
-        printf("%p\n", dir);
-        //if(dir) forprint(i);
-        i++;
-    }
-    
-    printf("%d", i);
-    */
-    
+    ft_printf("Hello, %s! Your score is %d%%.\n", "World", 95);
+    ft_printf("Pointer test: %p\n", (void *)12345);
+    ft_printf("Hex test (lowercase): %x\n", 255);
+    ft_printf("Hex test (uppercase): %X\n", 255);
+    ft_printf("Unsigned test: %u\n", 3000000000U);
+    ft_printf("Percent test: %%\n");
     return 0;
 }
