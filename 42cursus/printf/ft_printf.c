@@ -6,7 +6,7 @@
 /*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:02:36 by si-park           #+#    #+#             */
-/*   Updated: 2025/01/14 16:10:00 by si-park          ###   ########.fr       */
+/*   Updated: 2025/01/14 17:22:09 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,36 @@ int ft_printf(const char *str, ...)
     va_start(args, str);
 
     int count_byte = 0;
-    int n;
+    unsigned int n;
     char *numch;
 
     while (*str)
     {
         if(*str == '%')
         {
-            if(*(str+1) == 'c') 
+            str++;
+            if(*str == 'c')
             {
                 char c = (char)va_arg(args, int);
                 ft_putchar_fd(c, 1);
                 count_byte++;
             }
-            else if(*(str+1) == 's')
+            else if(*str == 's')
             {
                 char *nstr = va_arg(args, char *);
                 ft_putstr_fd(nstr, 1);
                 count_byte += ft_strlen(nstr);
             }
-            else if(*(str + 1) == 'p')
+            else if(*str == 'p')
             {
                 void *pnum = va_arg(args, void *);
                 count_byte += ft_print_p(pnum);
             }
-            else if(*(str+1) == 'd' || *(str+1) == 'i' || *(str + 1) == 'u')
+            else if(*str == 'd' || *str == 'i' || *str == 'u')
             {
-                if(*(str + 1) == 'u')
-                {
-                    n = va_arg(args, int);
-                    if(n < 0 ){
-                        numch = ft_itoa(-n);
-                    }
-                }
-                n = va_arg(args,int);
-                numch = ft_itoa(n);
+                n = va_arg(args, unsigned int);
+                if(*str == 'u') numch = un_itoa(n);
+                else { numch = ft_itoa(n); }                
                 if(numch)
                 {
                     ft_putstr_fd(numch, 1);
@@ -60,15 +55,15 @@ int ft_printf(const char *str, ...)
                     free(numch);
                 }
             }
-            else if(*(str+1) == 'x' || *(str + 1) == 'X')
+            else if(*str == 'x' || *str == 'X')
             {
-                unsigned int n = va_arg(args, unsigned int);
-                if(*(str + 1) == 'x') 
+                n = va_arg(args, unsigned int);
+                if(*str == 'x') 
                     count_byte += ft_putnbr_hex(n, 0);
                 else 
                     count_byte += ft_putnbr_hex(n, 1); 
             }
-            else if(*(str+1) == '%')
+            else if(*str == '%')
             {
                 ft_putstr_fd("%", 1);
                 count_byte += 2;
