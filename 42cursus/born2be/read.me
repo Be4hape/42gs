@@ -3,6 +3,58 @@ this subject need 42 link, and have to learn virtual box.
 25.1.17, ~crontab, finish
 
 25.1.18
+have to do list
 [] 본투비 기반 개념들 research,
 [] 평가 지침서 정독, 분석, 필요한 정보 find, 
 [] virtualbox 명령어 정리, (암기)
+
+do list
+born2be-mandatory
+
+[ ] 가상머신이 어떻게 작동하는가
+>
+• Host machine
+• Hypervisor
+• Guest Machine, Guest OS
+• Virtual Hardware
+
+- Host Machine
+가상머신을 실제로 구동할 물리 컴퓨터를 의미. CPU, Memory, Disk 등의 실제 하드웨어 자원이 존재함
+
+- Hypervisor
+가상머신을 생성,관리하는 소프트웨어 계층으로, 물리 하드웨어와 가상머신 (OS 및 애플리케이션) 사이에서 자원의 사용을 조율한다.
+
+∘ Type1(네이티브, 베어메탈) 하이퍼바이저 : 물리머신 위에 직접 설치되어 동작한다. 
+∘ Type2(호스트 기반) 하이퍼바이저 : 호스트 OS위에 설치되어 동작한다. 
+
+- Guest Machine
+가상머신에 설치된 운영체제를 말한다. 게스트 OS는 호스트 머신의 하드웨어가 아닌, 하이퍼바이저가 가상으로 제공하는 하드웨어를 사용한다.
+
+
+- Virtual Hardware
+cpu, memory, 저장장치, NIC 등의 자원을 가상화해서 게스트 OS가 마치 실제 하드웨어처럼 접근할 수 있도록 한다.
+
+
+
+
+
+[ ] 자신이 선택한 운영체제( OS )는 무엇이며, 왜 그 OS를 선택했는지
+
+Windows, macOS, Linux, IOS&Android, 기타/특수 목적 OS
+
+windows는 폭넓은 소프트웨어 호환성이 장점임.
+macOS는 연동성이 뛰어남. unix 기반
+Linux는 오픈소스 커널을 기반으로 하는 다양한 배포판이 존재. 서버, 슈퍼컴퓨터, 임베디드 기기 등 다양한 용도에서 활용되고, 커뮤니티 생태계가 매우 활발함
+
+
+세 OS의 특징이고, 이 중에서 windows를 고른다고 하면, 호환성이 장점이지만 라이센스 제약이 많고 트러블슈팅이 까다로움
+macOS와 Linux 중 서버운영과 관련된 문서, 가이드, 커뮤니티가 더 풍부한 Linux를 선택한다.
+
+macOS는 apple 연동성이 뛰어나지만 해당 하드웨어가 필수적이기 때문.
+
+또한 Linux는 서버나 클라우드 환경에서 가장 널리 사용되기 때문.
+
+
+
+
+[ ] Rocky와 Debian의 차이점
