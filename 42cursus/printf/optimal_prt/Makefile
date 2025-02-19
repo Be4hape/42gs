@@ -6,38 +6,42 @@
 #    By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 17:07:55 by si-park           #+#    #+#              #
-#    Updated: 2025/01/14 21:24:34 by si-park          ###   ########.fr        #
+#    Updated: 2025/02/19 12:30:18 by si-park          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME        = libftprintf.a
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror
+AR          = ar rcs
+RM          = rm -f
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+LIBFT_DIR   = libft
+LIBFT_A     = $(LIBFT_DIR)/libft.a
 
-PRINTF_SRCS = ft_printf.c ft_hexutil.c ft_handlers.c
-LIBFT_SRCS = libft/ft_itoa.c libft/ft_strlen.c libft/ft_strdup.c \
-             libft/ft_putchar_fd.c libft/ft_putstr_fd.c \
-             libft/ft_memmove.c libft/ft_memcpy.c
-
-SRCS = $(PRINTF_SRCS) $(LIBFT_SRCS)
-
-OBJS = $(SRCS:.c=.o)
-
-HEADERS = ft_printf.h libft/libft.h
+PRINTF_SRCS = ft_printf.c ft_handlers.c ft_hexutil.c
+PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(LIBFT_A):
+	$(MAKE) -C $(LIBFT_DIR)
 
-%.o: %.c $(HEADERS)
+$(NAME): $(LIBFT_A) $(PRINTF_OBJS)
+	cp $(LIBFT_A) $(NAME)
+	$(AR) $(NAME) $(PRINTF_OBJS)
+	
+%.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(PRINTF_OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re
