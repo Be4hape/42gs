@@ -589,9 +589,28 @@ crontab -e 를 통해 설정 가능.
 [ ] 서버가 시작되었을 때, 스크립트가 더이상 실행되지 않도록 해라. ( 스크립트를 수정하지 않은 채 ). 감시스크립트
 crontab -e
 
-> 주석처리
+> systemctl status cron
+systemctl stop cron
+systemctl disable cron
+
+or
+
+systemctl enable cron
+systemctl start cron
+
+>> 스크립트를 수정하지 않아야 하기 때문에, systemctl 명령어를 사용한다. 외에도 ufw나 ssh의 상태를 체크하거나 할 때에도 systemctl을 사용한다. 추가적인 내용은 systemctl의 옵션을 참고할 것.
 
 
+
+journalctl __COMM=sudo
+>> sudo 명령어를 사용한 로그를 보는 기능, 기존에는 이 명령어를 그냥 사용했기 때문에 로그가 3개씩 증가하던 현상이 발생, | grep 'COMMAND=' | 추가로 command 를 출력하는 라인 한 줄만 체크하여 1개씩 센다.
+
+
+vim /etc/pam.d/common-password
+>> lcredit 추가.
+
+vim /etc/login.def
+>> 명령어를 잊지 않을 것. 비밀번호 정책은 여기에도 추가해야한다. (MAX DAYS, MIN DAYS, ALERT 등) 
 
 
 
