@@ -135,6 +135,7 @@ c언어 자체적으로 스택과 힙 영역을 따로 구분하지 않는다. b
 
 
 READ함수
+#include <unistd.h>
 read( int fd, void *buf, size_t nbytes );
 
 inf fd 			: 읽을 파일의 파일 디스크립터
@@ -142,6 +143,43 @@ void *buf 		: 읽어들인 데이터를 저장할 버퍼(배열)
 size_t nbytes 	: 읽어들일 데이터의 최대 길이(buf의 길이보다 길어선 안됨)
 반환값 			: 읽어들인 데이터의 길이. 무조건 nbytes가 리턴되는 것은 아님. 중간에 파일의 끝을 만난다면 거기까지만 읽기 때문
 
+read함수에서 반환값이 0이라면 EOF, 파일의 끝에 도달했다는 뜻.
 
+
+OPEN함수
+#include <fcntl.h>
+int open ( const char *filepath, int flag );
+int open ( const char *filepath, int flag, mode_t mode );
+
+
+const char *filepath 	: 열고자 하는 파일 경로
+int flag					: 파일 열 때 사용할 옵션
+###
+O_RDONLY 			: 읽기 모드 (Read Only)
+
+O_WRONLY 			: 쓰기 모드 (Write Only) - 읽지 않고 쓰기만 하는 경우는 크게 많지 않음
+
+O_RDWR 				: 읽기/쓰기 모드
+
+O_CREAT 				: 파일 생성
+
+O_APPEND 			: 파일을 쓰되 기존 파일의 맨 끝부터 이어 쓰는 기능
+
+O_TRUNC 				: 파일을 초기화
+
+O_EXCL 				: O_CREAT 와 함께 사용되며, 이미 파일이 존재한다면 에러를 리턴
+
+mode_t mode 			: O_CREAT 옵션을 쓸 때 필수적으로 사용해야하는 옵션으로, 파일의 접근 권한을 명시
+기본값 ( 파일 : 0666, 디렉토리 : 0777 )
+
+
+
+
+
+get_next_line( int fd );
+> int fd의 의미는 파일 디스크립터의 형태로 파일을 읽어들이겠다는 뜻이다.
+
+만약 여러 개의 파일을 읽는다고 한다면 fd로 받는 것이 아니라 파일 그 자체를 받으면 되지만, fd를 통해 파일을 받게 되면 여러 개의 파일을 받을 수 있는 것.
+open() 을 통해 파일을 열면 fd의 값을 반환하게 되는데, fd의 값을 일종의 주소처럼 활용하여 함수를 사용하겠다는 뜻.
 
 
