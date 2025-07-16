@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: si-park <si-park@student.42.fr>            +#+  +:+       +#+        */
+/*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 16:30:56 by si-park           #+#    #+#             */
-/*   Updated: 2025/07/16 11:40:11 by si-park          ###   ########.fr       */
+/*   Created: 2024/10/03 18:48:55 by si-park           #+#    #+#             */
+/*   Updated: 2024/11/11 15:59:59 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
-# include "./printf/ft_printf.h"
-# include <unistd.h>
-# include <signal.h>
-
-#endif
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}

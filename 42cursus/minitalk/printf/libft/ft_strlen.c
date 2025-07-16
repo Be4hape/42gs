@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: si-park <si-park@student.42.fr>            +#+  +:+       +#+        */
+/*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 16:30:56 by si-park           #+#    #+#             */
-/*   Updated: 2025/07/16 11:40:11 by si-park          ###   ########.fr       */
+/*   Created: 2024/10/03 21:07:49 by si-park           #+#    #+#             */
+/*   Updated: 2024/10/05 19:59:42 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
-# include "./printf/ft_printf.h"
-# include <unistd.h>
-# include <signal.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}

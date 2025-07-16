@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: si-park <si-park@student.42.fr>            +#+  +:+       +#+        */
+/*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 16:30:56 by si-park           #+#    #+#             */
-/*   Updated: 2025/07/16 11:40:11 by si-park          ###   ########.fr       */
+/*   Created: 2024/10/05 21:05:35 by si-park           #+#    #+#             */
+/*   Updated: 2024/11/10 00:49:04 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
-# include "./printf/ft_printf.h"
-# include <unistd.h>
-# include <signal.h>
-
-#endif
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != '\0')
+	{
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((unsigned char)c == '\0')
+		return ((char *)s);
+	return (NULL);
+}

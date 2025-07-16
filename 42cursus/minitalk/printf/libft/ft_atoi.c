@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: si-park <si-park@student.42.fr>            +#+  +:+       +#+        */
+/*   By: si-park <si-park@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 16:30:49 by si-park           #+#    #+#             */
-/*   Updated: 2025/07/15 16:59:08 by si-park          ###   ########.fr       */
+/*   Created: 2024/10/06 19:41:02 by si-park           #+#    #+#             */
+/*   Updated: 2024/10/12 17:08:41 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-#include "utils.h"
-
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
@@ -38,9 +35,4 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (value * sign);
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
 }
