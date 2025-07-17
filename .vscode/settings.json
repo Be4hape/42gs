@@ -1,6 +1,6 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe",
-    "editor.fontFamily": "'Inconsolata', 'Droid Sans Mono', 'monospace', monospace",
+    "editor.fontFamily": "'Consolas', 'Droid Sans Mono', 'monospace', monospace",
     "editor.fontSize": 14
 }
