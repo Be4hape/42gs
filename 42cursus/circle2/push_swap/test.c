@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+typedef struct Node{
+    int data;
+    struct Node *next;
+} N;
+
+
+int main(){
+
+    return 0;
+}

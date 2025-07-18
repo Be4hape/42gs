@@ -6,11 +6,11 @@
 #    By: si-park <si-park@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/16 10:58:20 by si-park           #+#    #+#              #
-#    Updated: 2025/07/16 11:38:20 by si-park          ###   ########.fr        #
+#    Updated: 2025/07/18 11:35:12 by si-park          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC       = gcc
+CC       = cc
 CFLAGS   = -Wall -Wextra -Werror -Iprintf
 
 PRINTF_DIR  = printf
