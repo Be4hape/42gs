@@ -13,8 +13,11 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "./printf/ft_printf.h"
 # include <unistd.h>
 # include <signal.h>
+
+int	ft_atoi(const char *str);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putchar_fd(char c, int fd);
 
 #endif

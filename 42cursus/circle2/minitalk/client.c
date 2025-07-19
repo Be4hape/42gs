@@ -16,6 +16,11 @@ static void	send_char(pid_t server_pid, unsigned char c)
 {
 	int	bit;
 
+	// 1개의 문자를 보낼 때 > 1자 * 8 = 8비트
+	// 100자의 문자열을 보낼 때 = 800비트, 100 micro/sec
+	// 800 * 100 us = 80 000us = 80ms
+	// 0.08sec, 따라서 문자열 100자를 1초안에 보내기 위해선
+	// usleep(1000)으로 해도 된다.
 	bit = 0;
 	while (bit < 8)
 	{
@@ -23,7 +28,7 @@ static void	send_char(pid_t server_pid, unsigned char c)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		usleep(100);
+		usleep(1000);
 		bit++;
 	}
 }

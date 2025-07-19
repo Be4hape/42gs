@@ -11,44 +11,27 @@
 # **************************************************************************** #
 
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror -Iprintf
+CFLAGS   = -Wall -Wextra -Werror
 
-PRINTF_DIR  = printf
-LIBFT_DIR   = $(PRINTF_DIR)/libft
+CLIENT      = client
+SERVER      = server
 
-CLIENT   = client
-SERVER   = server
+CLIENT_OBJS = client.o utils.o
+SERVER_OBJS = server.o utils.o
 
-CLIENT_SRC   = client.c 
-SERVER_SRC   = server.c
-LIBFT_SRC    = $(wildcard $(LIBFT_DIR)/*.c)
-FT_PRINTF_SRC = $(PRINTF_DIR)/ft_handlers.c \
-                $(PRINTF_DIR)/ft_hexutil.c \
-                $(PRINTF_DIR)/ft_printf.c
+all: $(CLIENT) $(SERVER)
 
-CLIENT_OBJ   = $(CLIENT_SRC:.c=.o)
-SERVER_OBJ   = $(SERVER_SRC:.c=.o)
-PRINTF_OBJ   = $(LIBFT_SRC:.c=.o) $(FT_PRINTF_SRC:.c=.o)
-
-all: $(PRINTF_OBJ) $(CLIENT) $(SERVER)
-
-$(CLIENT): $(CLIENT_OBJ) $(PRINTF_OBJ)
+$(CLIENT): $(CLIENT_OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(SERVER): $(SERVER_OBJ) $(PRINTF_OBJ)
+$(SERVER): $(SERVER_OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c utils.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT_DIR)/%.o: $(LIBFT_DIR)/%.c
-	$(CC) $(CFLAGS) -I$(PRINTF_DIR) -c $< -o $@
-
-$(PRINTF_DIR)/%.o: $(PRINTF_DIR)/%.c
-	$(CC) $(CFLAGS) -I$(PRINTF_DIR) -c $< -o $@
-
 clean:
-	rm -f $(CLIENT_OBJ) $(SERVER_OBJ) $(PRINTF_OBJ)
+	rm -f $(CLIENT_OBJS) $(SERVER_OBJS)
 
 fclean: clean
 	rm -f $(CLIENT) $(SERVER)
