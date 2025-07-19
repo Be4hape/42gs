@@ -25,15 +25,16 @@ void print_list(Node *head){
     Node *cur = head;
     while(cur){
         printf("%d ", cur -> data);
+        printf("\n");
         cur = cur -> next;
     }
-    printf("\n");
+    
 }
 
 
 int main(){
     Node *head = NULL;
-    
+
     push_front(&head, 10);
     push_front(&head, 20);
     push_front(&head, 30);
