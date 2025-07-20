@@ -1,7 +1,3 @@
-# 42gs
-당일에 필요한 테스트 코드
-<pre>
---- TEST CODE ---
 Push_swap
 
 [ 연결 리스트 ]
@@ -29,7 +25,7 @@ struct Node *head;
 이 별칭으로 연결하지 않고, 기본적인 구조체 형식을 가져와 연결하고 있는 것.
 head 포인터에 struct Node 를 연결함으로써, typedef struct Node 안에 있는 모든 필드들에 접근할 수 있다.
 
-N *head;
+Node *head;
 > 위와 완전히 동일함.
 
 
@@ -164,27 +160,74 @@ a에 있는 데이터들을 모두 정렬할 수 있느냐***
 
 
 
+일반적인 push_front 방식으로 연결리스트 내부의 데이터를 채우고 출력하면
+뒤집어져서 채워진다.
 
+1 2 3 4 5
+>>
+ 5
+4
+3
+2
+1
+연결리스트는 null부터 탐색하기 때문, 재귀와 비슷함
 
 
+[ 재귀 ]
+void recurse(Node *p) {
+    if (!p) return; 
+    printf("%d ", p->data); 
+    recurse(p->next);
+}
 
+[ 연결리스트 ]
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
 
+(재귀) : printf 시 다음 데이터를 가리키고 있고, 그 데이터는 recurse 함수로 다시 들어가기 때문에 가장 안쪽을 먼저 출력한다.
+		이후, unwind 되어 제일 안쪽 > 2번째 > 1번째 > ' ' ' 이런식으로 출력될 것임.
 
+[프레임 A: recurse(node1)]
+ └── calls →
+     [프레임 B: recurse(node2)]
+      └── calls →
+          [프레임 C: recurse(node3)]
+           └── calls →
+               [프레임 D: recurse(NULL)] → 리턴
+스택 언와인드:
+ D 리턴 → C 리턴 → B 리턴 → A 리턴
 
 
 
+(연결리스트 ): 재귀 스택이 쌓이는 것처럼, 노드블럭이 heap에 순서대로 연결되어 있다고 생각하면 된다.
 
+헤드(head) ──▶ [A:data=1 | next──▶ B]
+                        [B:data=2 | next──▶ C]
+                        [C:data=3 | next──▶ NULL]
 
 
 
 
+push swap 에선 스택이라는 개념을 사용하지만,
+지금까지 알아온 스택을 사용하지는 않음. 즉, 명시적으로 스택이라고 하는 가상의 공간인 것.
 
+따라서 일반적인 방법으로 스택을 쌓을 경우 ( 연결리스트를 연결함과 동시에 데이터를 넣는 행위 ) 는
+데이터가 뒤에서부터 저장되기 때문에, 이를 정상적으로 저장하는 방법을 찾아야 한다.
+push_front -> push_back
 
 
 
 
+-> 
+화살표는 . 과 동일한 표현
 
+(*n).next; 와
+n -> next;
+는 완전히 같은 표현임
 
+포인터 n이 가리키는 Node 구조체 내부의 next 멤버를 뜻한다.
 
 
 
@@ -234,5 +277,15 @@ a에 있는 데이터들을 모두 정렬할 수 있느냐***
 
 
 
-    
-<pre/>
+
+
+
+
+
+
+
+
+
+
+
+
