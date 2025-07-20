@@ -23,37 +23,37 @@ typedef struct Node {
 
 void push_back(Node **head, int value){
     Node *new_node = malloc(sizeof(Node));
-    if(!new_node)
-        //malloc fail
-
+    if(!new_node){
+        //memory allocation fail case
+    }
+        
     new_node -> data = value;
     new_node -> next = NULL;
-    //null을 가리켜야 함, 스택처럼 쌓이는 것을 막기 위해.
-
-    //함수의 파라미터로 받아온 *head가 빈 리스트일 경우,
-    //head는 
-    //이후 함수 탈출
+    
+    //head가 null이라면, 1번만 돌아야 하기 때문에, 바로 NULL을 포함하고 있는
+    //new_node의 값을 *head에 대입한다.
     if(*head == NULL){
         *head = new_node;
-        return;
+        return ;
     }
 
-    //함수의 파라미터로써 받아온 head가 null이 아닌 경우에 
-    //현재의 값을 다음 노드를 가리키게 하고, 이를 null이 나올 때까지 반복
     Node *cur = *head;
     while(cur -> next != NULL){
         cur = cur -> next;
+        //current에 파라미터로 받아온 head의 값을 대입하고,
+        //current-next가  null이 될 때까지 current는 다음 노드를 가리킨다.
     }
+
+    //반복문이 끝난 뒤에, 제일 마지막 노드에 new_node. NULL을 연결한다.
     cur -> next = new_node;
 }
 
 
-
 // sa : swap a - 스택 a의 가장 위에 있는 두 원소
 // (혹은 첫 번째 원소와 두 번째 원소)의 위치를 서로 바꾼다.
-void swap_sa(Node **head) {
+// void swap_sa(Node **head) {
 
-}
+// }
 
 
 // sb : swap b - 스택 b의 가장 위에 있는 두 원소
@@ -98,17 +98,10 @@ void print_list(Node *head){
 int main(){
     Node *head = NULL;
     // main > malloc > orders
-
-
-
-
-
-
-
-
-
-
-
+    push_back(&head, 10);
+    push_back(&head, 20);
+    push_back(&head, 30);
+    print_list(head);
 
 
     return 0;
