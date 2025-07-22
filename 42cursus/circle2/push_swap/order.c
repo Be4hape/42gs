@@ -94,15 +94,14 @@ void push_pb(Node **a, Node **b){
 // rrb : reverse rotate b - 스택 b의 모든 원소들을 아래로 1 인덱스만큼 내린다. 
 // rrr : rra와 rrb를 동시에 실행한다.
 void rotate(Node **head){
-    //cur은 head의 2번째를 가리킨다.
     Node *first = *head;
-    Node *cur = first -> next;
-
-    Node *whl = *head;
-    while(whl -> next)
-        whl = whl -> next;
-    cur -> next = whl;
-    whl -> next = NULL;
+    *head = first -> next;
+    Node *cur = *head;
+    
+    while(cur -> next) 
+        cur = cur -> next;
+    cur -> next = first;
+    first -> next = NULL;
 }
 
 void reverse_rotate(Node **head){
@@ -129,6 +128,7 @@ void rotate_rr(Node **a, Node **b){
     rotate(a);
     rotate(b);
 }
+
 void rotate_rra(Node **a){
     reverse_rotate(a);
 }
@@ -176,10 +176,25 @@ int main(){
     push_pb(&headA, &headB);
     push_pb(&headA, &headB);
 
+    print_list(headA);
+    print_list(headB);
+
     rotate_ra(&headA);
     rotate_rb(&headB);
 
+    print_list(headA);
+    print_list(headB);
+
+    rotate_rra(&headA);
+    rotate_rrb(&headB);
+
+    print_list(headA);
+    print_list(headB);
+
     swap_sa(&headA);
+
+    print_list(headA);
+    print_list(headB);
 
     push_pa(&headA, &headB);
     push_pa(&headA, &headB);
