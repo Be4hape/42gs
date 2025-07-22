@@ -51,8 +51,10 @@ void swap(Node **head){
 }
 
 void swap_sa(Node **a){
+    write(1, "sa\n", 3);
     swap(a);
 }
+
 void swap_sb(Node **b){
     swap(b);
 }
@@ -83,7 +85,7 @@ void push_pa(Node **a, Node **b){
 }
 
 void push_pb(Node **a, Node **b){
-    //a의 가장 위의 데이터를 b의 가장 위로 옮긴다.
+    //a의 가장 위의 데이터를 b의 가장 위로 옮긴다
     push(a, b);
 }
 
