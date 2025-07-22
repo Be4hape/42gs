@@ -119,15 +119,7 @@ void print_list(Node *head){
 
 
 int main(int argc, char **argv){
-    (void) argc;
-    argv = argv + 1;
-    while(*argv){
-        //input : 1 2 3 4 5, output : 1 2 3 4 5
-        printf("%d ", atoi(*argv++));
-    }
     
-    
-
 
 
 
