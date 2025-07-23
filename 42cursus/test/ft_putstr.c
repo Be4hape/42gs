@@ -1,17 +1,8 @@
 #include <unistd.h>
 
-void putchar(char c){
-    write(1, &c, 1);
-}
-
 void	ft_putstr(char *str){
     while(*str){
-        putchar(*str);
+        write(1, str, 1);
         str++;
     }
-}
-
-int main(){
-    ft_putstr("hello worldasdaasdadasdsdasdadad");
-    return 0;
 }

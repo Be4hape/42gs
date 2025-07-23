@@ -13,7 +13,7 @@ void save_head(Node **head, int value){
     }
     Node *cur = *head;
     while(cur -> next != NULL){
-        cur = cur -> next;        
+        cur = cur -> next;
     }    
     cur -> next = new_node;
 }
@@ -52,10 +52,14 @@ void push(Node **a, Node **b){
 }
 
 void push_pa(Node **a, Node **b){
+    if(!*b)
+        return ;
     push(b, a);
 }
 
 void push_pb(Node **a, Node **b){
+    if(!*a)
+        return ;
     push(a, b);
 }
 void rotate(Node **head){
@@ -118,14 +122,21 @@ void print_list(Node *head){
 
 
 
+
+
+
+
+
 int main(int argc, char **argv){
+    int i = 0;
+    while(i < argc){
+        
+        i++;
+    }
     
 
 
-
-
-    // Node *headA = NULL;
-    // Node *headB = NULL;
+    //## subject ex test
     // save_head(&headA, 1);
     // save_head(&headA, 2);
     // save_head(&headA, 3);
@@ -163,6 +174,20 @@ int main(int argc, char **argv){
 
     // print_list(headA);
     // print_list(headB);
+
+    // //## pa, pb > b가 비어있는 상태, a가 비어있는 상태
+    // Node *headA = NULL;
+    // Node *headB = NULL;
+    // save_head(&headA, 1);
+    // save_head(&headA, 2);
+    // save_head(&headA, 3);
+    // save_head(&headA, 6);
+    // save_head(&headA, 5);
+    // save_head(&headA, 8);
+    // print_list(headA);
+
+    // push_pa(&headA, &headB);
+    // print_list(headA);
 
     return 0;
 }

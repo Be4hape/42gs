@@ -1,6 +1,9 @@
+#include <stdio.h>
+
 int	ft_strlen(char *str){
-    unsigned int i = 0;
-    while(str[i])
+    int i = 0;
+    while(str[i]){
         i++;
+    }
     return i;
 }
