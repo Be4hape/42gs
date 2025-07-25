@@ -17,8 +17,8 @@ char    **ft_split(char *str){
     char *ss;
 
     //구분자가 몇개인지 count, 이후 malloc을 위함
+    //구분자를 기준으로 단어의 개수를 세서 그만큼 malloc을 해줘야함.
     while(str[i]){
-        //문자열을 읽다가 공백, ' ' 을 읽으면 해당 위치 256을 가진 배열에 index로 저장
         if(str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\0'){
             count++;           
         }
@@ -28,7 +28,7 @@ char    **ft_split(char *str){
     i = 0;
     while(str[i]){
         
-        
+
         i++;
     }
 
