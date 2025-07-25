@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+//malloc
+
+// 이중포인터임을 잊지 않아야함.
+
+//space/tabs/new lines
+//or by the start/end of the string
+//문자열 하나를 받아 단어 단위로 분할한 뒤, 
+//NULL-종료된 문자열 배열로 반환하는 함수를 작성하시오.
+
+//“단어”란 공백(spaces), 탭(tabs), 개행(new lines) 또는 
+// 문자열의 시작/끝으로 구분되는 부분 문자열을 의미한다.
+char    **ft_split(char *str){
+    int i = 0;
+    int count = 0;
+    char *ss;
+
+    //구분자가 몇개인지 count, 이후 malloc을 위함
+    while(str[i]){
+        //문자열을 읽다가 공백, ' ' 을 읽으면 해당 위치 256을 가진 배열에 index로 저장
+        if(str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\0'){
+            count++;           
+        }
+        i++;
+    }
+
+    i = 0;
+    while(str[i]){
+        
+        
+        i++;
+    }
+
+
+
+}
+
+int main(){
+    int i = 0;
+    char **str = ft_split("hello world");
+    while(str[i]){
+        printf("%s\n", str[i]);
+        i++;
+    }
+
+    i = 0;
+    while(str[i])
+        free(str[i]);
+
+    return 0;
+}
