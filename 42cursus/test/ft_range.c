@@ -1,29 +1,34 @@
 #include <stdlib.h>
-#include <stdio.h>
 
-int     *ft_range(int start, int end){
-    int i = 0;
-    int *p;
-    if(start < 0){
-        i = end - start + 1;
-    }
-    else{
-        i = end + start + 1;
-    }
-    p = malloc(sizeof(int) * i + 1);
-    if(!p){
-        return NULL;
-    }
-    while(i--){
-        p[i] = i;
-    }
-    return p;
-}
+int	*ft_range(int start, int end)
+{
+    int size;
+    int *arr;
+    int step;
+    int i;
+    int current;
 
-int main(){
-    int *p;
-    p = ft_range(-10, 1);
+    if (end >= start)
+        size = end - start + 1;
+    else
+        size = start - end + 1;
 
-    printf("%d", *p);
-    return 0;
+    arr = malloc(sizeof(int) * size);
+    if (!arr)
+        return (NULL);
+
+    if (end >= start)
+        step = 1;
+    else
+        step = -1;
+
+    i = 0;
+    current = start;
+    while (i < size)
+    {
+        arr[i] = current;
+        current += step;
+        i++;
+    }
+    return (arr);
 }
