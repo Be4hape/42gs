@@ -151,11 +151,11 @@ static void free_list(Node **head){
 
 static int parsing(Node **head, const char *str){
     int i = 0;
-    int value;
     int sign = 1;
     int INT_MAX = 2147483647;
     int INT_MIN = -2147483648;
     long long acc = 0;
+    long long val = 0;
 
     while(str[i]){
         //공백, 탭, 줄내림
@@ -163,6 +163,10 @@ static int parsing(Node **head, const char *str){
             i++;
         if(!str)
             break;
+
+        sign = 1;
+        acc = 0;
+        
         //부호
         if(str[i] == '+' || str[i] == '-'){
             if(str[i] == '-')
@@ -170,95 +174,49 @@ static int parsing(Node **head, const char *str){
             i++;
         }
         //숫자
-        while(!(str[i] >= '0' && str[i] <= '9'))
+        while(str[i] >= '0' && str[i] <= '9'){
+            int d = str[i++] - '0';
+            //overflow, 다음 연산에서 acc는 acc * 10 + d이기 때문에, 
+            //overflow 검사를 / 10을 통해 한다. (수학적인 접근)
+            if(acc > (INT_MAX - d) / 10)
+                return 0;
+            acc = acc * 10 + d;            
+        }
+        val = acc * sign;
+        //최종 숫자에 부호를 넣은 값이 min과 max에 부합하는지 검사
+        if(val > INT_MAX || val < INT_MIN)
             return 0;
-
+        val = (int) val;
         
-
-
-
-        //정수 min max 
-        if(str[i] >= INT_MAX || str[i] <= INT_MIN)
+        //중복 검사
+        if(contains(*head, val))
             return 0;
-
-        
-
-
-
-
-        i++;
+        save_head(head, val);
     }
+    return 1;
 }
 
 
-
-
-
-
-
-
-int main(int argc, char **argv){
+int main(int ac, char **av){
     //입력은 ./push_swap 2 1 3 6 5 8
     //의 형태로 들어옴, 
+    Node *headA = NULL;
+    int i = 1;
     
-    
+    if(ac < 2)
+        return 0;
+    while(i < ac){
+        if(!parsing(&headA, av[i])){
+            print_error();
+            free_list(&headA);
+            return 1;
+        }            
+        i++;
+    }
+    print_list(headA);
 
+    // -- algorithms --
 
-
-
-
-    //## subject ex test
-    // save_head(&headA, 1);
-    // save_head(&headA, 2);
-    // save_head(&headA, 3);
-    // save_head(&headA, 6);
-    // save_head(&headA, 5);
-    // save_head(&headA, 8);
-
-    // push_pb(&headA, &headB);
-    // push_pb(&headA, &headB);
-    // push_pb(&headA, &headB);
-
-    // print_list(headA);
-    // print_list(headB);
-
-    // rotate_ra(&headA);
-    // rotate_rb(&headB);
-
-    // print_list(headA);
-    // print_list(headB);
-
-    // rotate_rra(&headA);
-    // rotate_rrb(&headB);
-
-    // print_list(headA);
-    // print_list(headB);
-
-    // swap_sa(&headA);
-
-    // print_list(headA);
-    // print_list(headB);
-
-    // push_pa(&headA, &headB);
-    // push_pa(&headA, &headB);
-    // push_pa(&headA, &headB);
-
-    // print_list(headA);
-    // print_list(headB);
-
-    // //## pa, pb > b가 비어있는 상태, a가 비어있는 상태
-    // Node *headA = NULL;
-    // Node *headB = NULL;
-    // save_head(&headA, 1);
-    // save_head(&headA, 2);
-    // save_head(&headA, 3);
-    // save_head(&headA, 6);
-    // save_head(&headA, 5);
-    // save_head(&headA, 8);
-    // print_list(headA);
-
-    // push_pa(&headA, &headB);
-    // print_list(headA);
-
+    free_list(&headA);
     return 0;
 }
