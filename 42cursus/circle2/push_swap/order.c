@@ -172,6 +172,8 @@ static int parsing(Node **head, const char *str){
             if(str[i] == '-')
                 sign = -1;
             i++;
+            if(!(str[i] >= '0' && str[i] <= '9'))
+                return 0;
         }
         //숫자
         while(str[i] >= '0' && str[i] <= '9'){
