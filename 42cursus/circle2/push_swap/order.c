@@ -120,6 +120,75 @@ void print_list(Node *head){
     printf("\n");
 }
 
+//Error 출력
+static void print_error(void){
+    write(2, "Error\n", 6);
+}
+
+//중복 검사, 중복일 시 return 1
+static int contains(Node *head, int v){
+    while(head){
+        if(head -> data == v)
+            return 1;
+        head = head -> next;
+    }
+    return 0;
+}
+
+//리스트 전체 해제
+static void free_list(Node **head){
+    Node *cur = *head;
+    Node *nn;
+
+    while(cur){
+        //free로 해제한 뒤에 node 연결
+        nn = cur -> next;
+        free(cur);
+        cur = nn;
+    }
+    *head = NULL;
+}
+
+static int parsing(Node **head, const char *str){
+    int i = 0;
+    int value;
+    int sign = 1;
+    int INT_MAX = 2147483647;
+    int INT_MIN = -2147483648;
+    long long acc = 0;
+
+    while(str[i]){
+        //공백, 탭, 줄내림
+        while(str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
+            i++;
+        if(!str)
+            break;
+        //부호
+        if(str[i] == '+' || str[i] == '-'){
+            if(str[i] == '-')
+                sign = -1;
+            i++;
+        }
+        //숫자
+        while(!(str[i] >= '0' && str[i] <= '9'))
+            return 0;
+
+        
+
+
+
+        //정수 min max 
+        if(str[i] >= INT_MAX || str[i] <= INT_MIN)
+            return 0;
+
+        
+
+
+
+
+        i++;
+    }
+}
 
 
 
@@ -131,7 +200,7 @@ void print_list(Node *head){
 int main(int argc, char **argv){
     //입력은 ./push_swap 2 1 3 6 5 8
     //의 형태로 들어옴, 
-    char **tokens;
+    
     
 
 
