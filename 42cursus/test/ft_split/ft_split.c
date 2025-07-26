@@ -13,17 +13,22 @@
 // 문자열의 시작/끝으로 구분되는 부분 문자열을 의미한다.
 char    **ft_split(char *str){
     int i = 0;
-    int count = 0;
+    int word = 0;
+    int blank;
     char *ss;
 
     //구분자가 몇개인지 count, 이후 malloc을 위함
     //구분자를 기준으로 단어의 개수를 세서 그만큼 malloc을 해줘야함.
     while(str[i]){
         if(str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\0'){
-            count++;           
+            i++;
+            blank++;
         }
+        word++;
         i++;
     }
+
+    
 
     i = 0;
     while(str[i]){
