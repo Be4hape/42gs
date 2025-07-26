@@ -15,7 +15,7 @@ int main(int ac, char **av){
                 if(num != i) 
                     printf("*");
                 num = num / i;
-            }else i++;            
+            }i++;            
         }
     }
     printf("\n");

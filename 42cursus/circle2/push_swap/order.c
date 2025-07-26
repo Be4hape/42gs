@@ -1,4 +1,5 @@
 #include "utils.h"
+//read, write, malloc, free, exit
 
 void save_head(Node **head, int value){
     Node *new_node = malloc(sizeof(Node));
@@ -128,12 +129,13 @@ void print_list(Node *head){
 
 
 int main(int argc, char **argv){
-    int i = 0;
-    while(i < argc){
-        
-        i++;
-    }
+    //입력은 ./push_swap 2 1 3 6 5 8
+    //의 형태로 들어옴, 
+    char **tokens;
     
+
+
+
 
 
     //## subject ex test

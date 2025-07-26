@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+// read, write, malloc, free
 
 typedef struct Node {
     int data;

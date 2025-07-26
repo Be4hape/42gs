@@ -7,6 +7,7 @@ typedef struct Node {
     struct Node *next;
 } Node;
 
+int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
 
