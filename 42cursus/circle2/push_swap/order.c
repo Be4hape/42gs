@@ -68,6 +68,9 @@ void push_pb(Node **a, Node **b){
     push(a, b);
 }
 void rotate(Node **head){
+    if(!*head || !(*head) -> next)
+        return;
+
     Node *first = *head;
     *head = first -> next;
     Node *cur = *head;
@@ -246,17 +249,19 @@ void rdx_sorting(Node **a, Node **b){
         max_bit++;
 
     while(i < max_bit){
+        j = 0;
         while(j < size){
             top = (*a) -> data;
-
-
-
+            if(((top >> i) & 1) == 0)
+                push_pb(a,b);
+            else
+                rotate_ra(a);
             j++;
         }
+        while(*b)
+            push_pa(a, b);
         i++;
     }
-
-
 }
 
 
@@ -279,13 +284,13 @@ int main(int ac, char **av){
         }            
         i++;
     }
-    print_list(headA);
+    //print_list(headA);
 
     // -- algorithms -- //
     rdx_sorting(&headA, &headB);
 
-
-
+    //print_list(headA);
+    //print_list(headB);
 
     free_list(&headA);
     return 0;
