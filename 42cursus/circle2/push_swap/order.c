@@ -35,10 +35,12 @@ void swap_sa(Node **a){
 }
 
 void swap_sb(Node **b){
+    write(1, "sb\n", 3);
     swap(b);
 }
 
 void swap_ss(Node **a, Node **b){
+    write(1, "ss\n", 3);
     swap(a);
     swap(b);
 }
@@ -53,12 +55,14 @@ void push(Node **a, Node **b){
 }
 
 void push_pa(Node **a, Node **b){
+    write(1, "pa\n", 3);
     if(!*b)
         return ;
     push(b, a);
 }
 
 void push_pb(Node **a, Node **b){
+    write(1, "pb\n", 3);
     if(!*a)
         return ;
     push(a, b);
@@ -87,25 +91,30 @@ void reverse_rotate(Node **head){
     *head = cur;
 }
 
-
 void rotate_ra(Node **a){
+    write(1, "ra\n", 3);
     rotate(a);
 }
 void rotate_rb(Node **b){
+    write(1, "rb\n", 3);
     rotate(b);
 }
 void rotate_rr(Node **a, Node **b){
+    write(1, "rr\n", 3);
     rotate(a);
     rotate(b);
 }
 
 void rotate_rra(Node **a){
+    write(1, "rra\n", 4);
     reverse_rotate(a);
 }
 void rotate_rrb(Node **b){
+    write(1, "rrb\n", 4);
     reverse_rotate(b);
 }
 void rotate_rrr(Node **a, Node **b){
+    write(1, "rrr\n", 4);
     reverse_rotate(a);
     reverse_rotate(b);
 }
@@ -199,10 +208,65 @@ static int parsing(Node **head, const char *str){
 }
 
 
+//노드 길이 count, 
+int list_size(Node *head){
+    int count = 0;
+    while(head){
+        count++;
+        head = head -> next;
+    }
+
+    return count;
+}
+
+//노드 최댓값, i
+int list_max(Node *head){
+    int i = head -> data;
+    while(head){
+        if(head -> data > i)
+            i = head -> data;
+        head = head -> next;
+    }
+
+    return i;
+}
+
+void rdx_sorting(Node **a, Node **b){
+    int i = 0;
+    int j = 0;
+    int top = 0;
+
+    //노드 길이, 최댓값
+    int size = list_size(*a);
+    int max_data = list_max(*a);
+
+    //최대 데이터의 비트 추출, 그만큼 반복하기 위함
+    int max_bit = 0;
+    while((max_data >> max_bit) != 0)
+        max_bit++;
+
+    while(i < max_bit){
+        while(j < size){
+            top = (*a) -> data;
+
+
+
+            j++;
+        }
+        i++;
+    }
+
+
+}
+
+
+
+
 int main(int ac, char **av){
     //입력은 ./push_swap 2 1 3 6 5 8
     //의 형태로 들어옴, 
     Node *headA = NULL;
+    Node *headB = NULL;
     int i = 1;
     
     if(ac < 2)
@@ -217,7 +281,11 @@ int main(int ac, char **av){
     }
     print_list(headA);
 
-    // -- algorithms --
+    // -- algorithms -- //
+    rdx_sorting(&headA, &headB);
+
+
+
 
     free_list(&headA);
     return 0;
