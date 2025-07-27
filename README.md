@@ -1,165 +1,3 @@
-
-
-Assignment name : flood_fill
-Expected files : *.c, *.h
-Allowed functions: -
-char ** 형태의 2차원 char 배열과 t_point 구조체로 배열의 크기를,
-t_point 구조체로 시작점을 받아, 주어진 ‘begin’ 좌표에서부터
-동일한 문자로 이루어진 영역(zone)을 ‘F’ 문자로 채웁니다.
-영역은 수평 및 수직으로 인접한 동일 문자의 집합으로,
-다른 문자나 배열 경계에 의해 구분됩니다.
-대각선 방향으로는 채우지 않습니다.
-
-flood_fill 함수 원형:
-void flood_fill(char **tab, t_point size, t_point begin);
-
-t_point 구조체 정의:
-typedef struct s_point
-{
-int x;
-int y;
-} t_point;
-
-Example:
-$> cat test_main.c
-#include "test_functions.h"
-#include "flood_fill.h"
-int main(void)
-{
-char **area;
-t_point size = {8, 5};
-t_point begin = {2, 2};
-char *zone[] = {
-"1 1 1 1 1 1 1 1",
-"1 0 0 0 1 0 0 1",
-"1 0 0 1 0 0 0 1",
-"1 0 1 1 0 0 0 1",
-"1 1 1 0 0 0 0 1",
-};
-area = make_area(zone);
-print_tab(area);
-flood_fill(area, size, begin);
-putc('\n');
-print_tab(area);
-return (0);
-}
-$> gcc flood_fill.c test_main.c test_functions.c -o flood_fill; ./flood_fill
-1 1 1 1 1 1 1 1
-1 0 0 0 1 0 0 1
-1 0 0 1 0 0 0 1
-1 0 1 0 0 0 0 1
-1 1 0 0 0 0 0 0
-1 1 1 1 1 1 1 1
-1 F F F 1 0 0 1
-1 F F 1 0 0 0 1
-1 F 1 0 0 0 0 1
-1 1 0 0 0 0 0 0
-$>
-
-
-
-
-==================================================
-
-주어진 2차원 배열 t_point size 만큼의 크기 안에서 
-t_point begin 에서 시작하여
-1로 둘러쌓인 0인 지점을 모두 F로 채워넣어라.
-대각선 방향으로는 채우지 않는다.
-
-
-
-2차원 배열공간 t_point size 만큼의 크기를 받아서, 
-t_point begin 과 같은 문자로 이루어진 구역을 채워라.
-대각선 방향으로는 채우지 않는다.
-
-t_point size  = {8, 5};
-t_point begin = {2, 2};
-char *zone[] = {
-    "1 1 1 1 1 1 1 1",
-    "1 0 0 0 1 0 0 1",
-    "1 0 0 1 0 0 0 1",
-    "1 0 1 1 0 0 0 1",
-    "1 1 1 0 0 0 0 1",
-};
-area = make_area(zone);    // 내부적으로 strdup 등으로 2차원 배열 생성
-print_tab(area);           // flood_fill 이전 출력
-flood_fill(area, size, begin);
-print_tab(area);           // flood_fill 이후 출력
-
-
-로 들어왔다면,
-
-1 1 1 1 1 1 1 1
-1 F F F 1 0 0 1
-1 F F 1 0 0 0 1
-1 F 1 0 0 0 0 1
-1 1 0 0 0 0 0 0
-
-이런식으로 채워져야 한다.
-begin이 0이고, 수직, 수평 방향으로 0이 있기 때문에 F로 채워줄 수 있음.
-
-
-but, 아래의 상황에서
-
-t_point size = { 4, 4 }
-t_point begin = { 2,0 }
-1 0 1 0
-0 1 0 1
-1 0 1 0
-
->>
-1 0 F 0
-0 1 0 1
-1 0 1 0
-이런식으로 채워지는 것.
-
-대각으로 채울 수 없고, begin과 같은 숫자로 이뤄진 공간이 수직과 수평방향에 없기 때문.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Push_swap
 
 [ 연결 리스트 ]
@@ -579,4 +417,38 @@ long long : 8바이트
 
 
 
+-- zsh <> bash --
+
+1. bash : ./push_swap $(shuf -i1-1000 -n100)
+실행 시 자동으로 공백, 탭, 줄바꿈을 기준으로 split한다.
+그 결과가 $1 $2 $3 ' ' ' #100 형태로 push_swap의 인자로 전달함.
+
+2. zsh : shuf 출력 전체가 하나의 문자열로 묶여 push_swap에 인자 하나 $1= 1 237 45 ' ' ' 982 로 전달
+push_swap 코드 상에서 인자가 하나라면 잘못된 입력이기 때문에, Error를 출력하는 것.
+
+
+
+
+zsh에서 bash 처럼 사용하려면,
+1. .zsh 파일 자체를 수정한다 >> echo "setopt SH_WORD_SPLIT" >> ~/.zshrc
+'
+'
+'
+
+
+결론적으로 bash는 커맨드 치환 후 IFS(공백, 탭, 줄바꿈) 기준을 삼아 자동으로 단어를 분리하는데
+zsh는 단어를 분리하지 않고 하나의 문자열로 취급하기 때문에 일어나는 일.
+
+따라서 zsh에서 bash와 같은 스크립트를 돌릴 때, 명시적으로 단어 분리를 해주면 정상작동 한다.
+
+
+
+
+---------------7.27. 구현완료 ---------------
+
+rotate, push 함수 말고 다른 함수에도 안전장치가 필요함,
+makefile 만들어야 함.
+
+여러 케이스 실험해보고 set finish,
+파일 헷갈리지 말 것,
 
