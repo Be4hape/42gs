@@ -273,7 +273,7 @@ static int is_sorting(Node *head){
 	return (1);
 }
 
-void static sort_3(Node **a){
+static void sort_3(Node **a){
     //argument가 3개일 때, 직접 비교
     int x = (*a) -> data;
     int y = (*a) -> next -> data;
