@@ -264,6 +264,46 @@ void rdx_sorting(Node **a, Node **b){
     }
 }
 
+static int is_sorting(Node *head){
+	while (head && head -> next){
+		if ((head -> data) > (head -> next -> data))
+			return (0);
+		head = head -> next;
+	}
+	return (1);
+}
+
+void static sort_3(Node **a){
+    //argument가 3개일 때, 직접 비교
+    int x = (*a) -> data;
+    int y = (*a) -> next -> data;
+    int z = (*a) -> next -> next -> data;
+
+    //1 3 2
+    if(x < y && y > z && x < z){
+        swap_sa(a);
+        rotate_ra(a);
+    }       
+    //2 1 3
+    else if (x > y && y < z && x < z)
+        swap_sa(a);
+    //2 3 1
+    else if(x < y && y > z && x > z)
+        rotate_rra(a);
+
+    //3 1 2
+    else if(x > y && y < z && x > z)
+        rotate_ra(a);
+
+    //3 2 1
+    else if(x > y && y > z){
+        swap_sa(a);
+        rotate_rra(a);
+    }
+}
+
+
+
 
 
 
@@ -287,11 +327,23 @@ int main(int ac, char **av){
     //print_list(headA);
 
     // -- algorithms -- //
-    rdx_sorting(&headA, &headB);
 
-    //print_list(headA);
-    //print_list(headB);
+    int n = list_size(headA);
+    if(is_sorting(headA))
+        return 0;
+    if(n == 2){
+        swap_sa(headA);
+        return 0;
+    }
+    else if(n == 3){
+        sort_3(headA);
+        return 0;
+    }
+    else if(n <= 5){
 
+    }
+    else
+        rdx_sorting(&headA, &headB);
     free_list(&headA);
     return 0;
 }
