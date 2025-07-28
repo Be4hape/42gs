@@ -6,11 +6,20 @@
 /*   By: si-park <si-park@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:06:14 by si-park           #+#    #+#             */
-/*   Updated: 2025/07/27 18:11:54 by si-park          ###   ########.fr       */
+/*   Updated: 2025/07/28 14:30:09 by si-park          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+static int is_sorting(t_node *head){
+	while (head && head -> next){
+		if ((head -> data) > (head -> next -> data))
+			return (0);
+		head = head -> next;
+	}
+	return (1);
+}
 
 void	rdx_sorting(t_node **a, t_node **b, int max_data, int max_bit)
 {
@@ -62,6 +71,8 @@ int	main(int ac, char **av)
 		}
 		i++;
 	}
+	if(is_sorting(head_a))
+		return (0);
 	rdx_sorting(&head_a, &head_b, 0, 0);
 	free_list(&head_a);
 	return (0);
