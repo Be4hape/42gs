@@ -302,6 +302,45 @@ void static sort_3(Node **a){
     }
 }
 
+static int get_min(Node *head){
+    int min;
+
+    min = head -> data;
+    while(head){
+        if(head -> data < min){
+            min = head -> data;
+        }
+        head = head -> next;
+    }
+    return min;
+}
+
+static int get_second(Node *head, int min){
+    int second;
+    
+    second = 2147483647;
+    while(head){
+        if (head -> data != min && head -> data < second)
+            second = head -> data;
+        head = head -> next;
+    }
+    return second;
+}
+
+
+
+void sort_5(Node **a, Node **b){
+    int min, second;
+
+    min = get_min(*a);
+    second = get_second(*a, min);
+
+    while (list_size(*a) > 3){
+        if((*a) -> data == min)
+
+    }
+
+}
 
 
 
@@ -339,9 +378,8 @@ int main(int ac, char **av){
         sort_3(headA);
         return 0;
     }
-    else if(n <= 5){
-
-    }
+    else if(n <= 5)
+        sort_5(&headA, &headB);
     else
         rdx_sorting(&headA, &headB);
     free_list(&headA);
