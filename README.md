@@ -452,3 +452,31 @@ makefile 만들어야 함.
 여러 케이스 실험해보고 set finish,
 파일 헷갈리지 말 것,
 
+
+
+----------------7.28. find bug------------------
+
+./push_swap 42
+>> fail, introduction이 0개여야 하는데, 실행되고 있음
+
+./push_swap 0 1 2 3
+>> 아무것도 표시되지 않아야 하는데, 실행되고 있음
+
+./push_swap 0 1 2 3 4 5 6 7 8 9
+>> 아무것도 표시되지 않아야 하는데, 실행되고 있음
+
+ARG="2 1 0"; ./push_swap $ARG | ./checker_linux $ARG
+>> checker - OK, but 명령 목록 크기가 3이상임.
+
+ARG="1 5 2 4 3"; ./push_swap $ARG | ./checker_linux $ARG
+>> checker - ok, but 명령 목록 크기가 12 이상임, 8개일 시 KUDOS.
+
+ARG="5 random values"; ./push_swap $ARG | checker_linux $ARG
+>> 명령 목록의 크기가 12를 초과하지 않는지 확인해야 함. but, 초과함.
+
+
+파싱한 값들을 비교하는 과정이 없고, 단순하게 비트로 쪼개어 pb와 ra를 반복하기 때문에, 
+오름차순으로 이미 정렬되어 있는 케이스에 대해서는 알 수 없음.
+> 따라서 다시 정렬하는 행위를 함
+
+
