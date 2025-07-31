@@ -479,3 +479,5 @@ ARG="5 random values"; ./push_swap $ARG | checker_linux $ARG
 오름차순으로 이미 정렬되어 있는 케이스에 대해서는 알 수 없음.
 > 따라서 다시 정렬하는 행위를 함
 
+------------7.31. 수정완료----------------
+maybe push_swap all complete
