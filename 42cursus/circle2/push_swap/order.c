@@ -376,11 +376,11 @@ int main(int ac, char **av){
     if(is_sorting(headA))
         return 0;
     if(n == 2){
-        swap_sa(headA);
+        swap_sa(&headA);
         return 0;
     }
     else if(n == 3){
-        sort_3(headA);
+        sort_3(&headA);
         return 0;
     }
     else if(n <= 5)
