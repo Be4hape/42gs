@@ -336,9 +336,14 @@ void sort_5(Node **a, Node **b){
     second = get_second(*a, min);
 
     while (list_size(*a) > 3){
-        if((*a) -> data == min)
-
+        if((*a) -> data == min || (*a) -> data == second)
+            push_pb(a, b);
+        else
+            rotate_ra(a);
     }
+    sort_3(a);
+    push_pa(a, b);
+    push_pa(a, b);
 
 }
 
